@@ -5,7 +5,7 @@
 #include <string>
 #include <type_traits>
 
-// Проверка, что у типа T есть метод hash(), возвращающий что-то, конвертируемое к long
+// Проверка, что у типа T есть метод hash(), возвращающий, конвертируемое к long
 template <typename T>
 concept HasHashMethod = requires(T t) {
     { t.hash() } -> std::convertible_to<long>;
@@ -23,4 +23,5 @@ concept NoVirtualDestructor = !std::has_virtual_destructor_v<T>;
 
 // Основной концепт, объединяющий все условия
 template <typename T>
+
 concept ComplexConcept = HasHashMethod<T> && HasToStringMethod<T> && NoVirtualDestructor<T>;
